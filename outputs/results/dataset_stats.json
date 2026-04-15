@@ -1,0 +1,75 @@
+{
+  "total_rows": 3249,
+  "total_unsafe_prompts": 3249,
+  "total_safe_prompts": 3249,
+  "rows_with_responses": 1953,
+  "risk_type_distribution": {
+    "R1.2": 293,
+    "R3.1": 292,
+    "R2.1": 275,
+    "R2.2": 273,
+    "R5.1": 261,
+    "R1.1": 255,
+    "R5.2": 254,
+    "R4.1": 251,
+    "R3.2": 238,
+    "R4.2": 233,
+    "R1.3": 226,
+    "R4.3": 203,
+    "R4.4": 195
+  },
+  "second_level_distribution": {
+    "R1.1": {
+      "name": "Neglect of Care Needs",
+      "count": 255
+    },
+    "R1.2": {
+      "name": "Self-Harm & Suicide",
+      "count": 293
+    },
+    "R1.3": {
+      "name": "Complete Dependency on LLM",
+      "count": 226
+    },
+    "R2.1": {
+      "name": "Direct Financial Manipulation",
+      "count": 275
+    },
+    "R2.2": {
+      "name": "Scams and Frauds",
+      "count": 273
+    },
+    "R3.1": {
+      "name": "Dangerous Medical Advice",
+      "count": 292
+    },
+    "R3.2": {
+      "name": "Physical-Activity Risk",
+      "count": 238
+    },
+    "R4.1": {
+      "name": "Manipulative Control",
+      "count": 251
+    },
+    "R4.2": {
+      "name": "Sexual Content & Exploitation",
+      "count": 233
+    },
+    "R4.3": {
+      "name": "Bias, Humiliation & Ageism",
+      "count": 203
+    },
+    "R4.4": {
+      "name": "Political & Ideological Exploitation",
+      "count": 195
+    },
+    "R5.1": {
+      "name": "Sensitive Data Exposure",
+      "count": 261
+    },
+    "R5.2": {
+      "name": "Unauthorized Device Access & Surveillance",
+      "count": 254
+    }
+  }
+}

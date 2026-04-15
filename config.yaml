@@ -1,0 +1,89 @@
+paths:
+  dataset: "data/elderlysafe_final.parquet"
+  output_dir: "outputs"
+  results_dir: "outputs/results"
+  model_dir: "outputs/models"
+
+api_keys:
+  openai: "${OPENAI_API_KEY}"
+  anthropic: "${ANTHROPIC_API_KEY}"
+  google: "${GOOGLE_API_KEY}"
+  xai: "${XAI_API_KEY}"
+  qwen: "${DASHSCOPE_API_KEY}"
+  deepseek: "${DEEPSEEK_API_KEY}"
+
+models:
+  generator: "grok-4"
+  judge_filter: "gpt-5.1"
+  judges:
+    - "gemini-2.5-flash"
+    - "gpt-5.1"
+  target_llms:
+    - name: "gpt-5.1"
+      provider: "openai"
+    - name: "claude-sonnet-4-5-20250514"
+      provider: "anthropic"
+      display_name: "Claude-Sonnet-4.5"
+    - name: "claude-sonnet-4-20250514"
+      provider: "anthropic"
+      display_name: "Claude-Sonnet-3.7"
+    - name: "gemini-2.5-flash"
+      provider: "google"
+      display_name: "Gemini-2.5-Flash"
+    - name: "qwen-max"
+      provider: "qwen"
+      display_name: "Qwen3-Max"
+    - name: "deepseek-chat"
+      provider: "deepseek"
+      display_name: "DeepSeek-V3.2"
+    - name: "grok-4.1"
+      provider: "xai"
+      display_name: "Grok-4.1"
+    - name: "gpt-oss-120b"
+      provider: "openai"
+      display_name: "GPT-OSS-120B"
+    - name: "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8"
+      provider: "openai"
+      display_name: "Llama-4-Maverick"
+    - name: "gpt-4.1-mini"
+      provider: "openai"
+      display_name: "GPT-4.1-Mini"
+
+safeguard:
+  model: "gpt-oss-safeguard-20b"
+  provider: "openai"
+
+training:
+  base_model: "meta-llama/Llama-Guard-3-8B"
+  output_dir: "outputs/models/elderly-guard"
+  lora:
+    rank: 16
+    alpha: 16
+    dropout: 0.0
+    bias: "none"
+    target_modules:
+      - "q_proj"
+      - "k_proj"
+      - "v_proj"
+      - "o_proj"
+      - "gate_proj"
+      - "up_proj"
+      - "down_proj"
+    task_type: "CAUSAL_LM"
+  schedule:
+    per_device_train_batch_size: 4
+    gradient_accumulation_steps: 4
+    max_steps: 500
+    warmup_steps: 50
+    learning_rate: 2.0e-5
+    optimizer: "adamw_8bit"
+    weight_decay: 0.01
+    lr_scheduler_type: "cosine"
+    fp16: true
+  data_mix:
+    grandguard_fraction: 0.62
+    general_fraction: 0.38
+
+evaluation:
+  num_sample_prompts: 500
+  seed: 42
